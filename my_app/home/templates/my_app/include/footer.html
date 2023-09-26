@@ -1,0 +1,74 @@
+{% load static %}
+<footer class="footer-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h3 class="text-dark"><a href="{% url 'products' %}" >Neopol | Casa </a></h3>
+          <p>Гарантия и безупречное качество вот что для нас главное. Наши экспозиции регулярно обновляются и дополняются предметами мебели в соответствии с самыми актуальными тенденциями мировой мебельной индустрии. На сегодняшний момент мы стали официальными дилерами более чем 300 известных мировых марок. </p>
+        </div>
+
+        <div class="col-md-3 ml-auto">
+          <h3 class="text-dark">Ссылки</h3>
+          <ul class="list-unstyled footer-links">
+            <li><a href="{% url 'index' %}">Главная</a></li>
+            
+            <li><a href="{% url 'about' %}">О нас</a></li>
+            <li><a href="{% url 'contact' %}">Контакты</a></li>
+     
+            <li>
+                <a href="tel: 8 952 87 92 098">
+                +7 952 87 92 098
+                </a>
+            </li>
+            <li>
+                <a href="mailto:varvar1987a@mail.ru">
+                    varvar1987a@mail.ru
+                </a>
+            </li>
+            <li class="social-icon-item">
+                <a href="tg://resolve?domain=hottabuch_87" class="social-icon-link social-icon-telegram bi-telegram"></a>
+            </li>
+
+            <li class="social-icon-item">
+                <a href="https://wa.me/79528792098" class="social-icon-link social-icon-whatsapp bi-whatsapp"></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-4">
+          <h3 class="text-dark">Наш Опыт</h3>
+          <p>Мы сотрудничаем с целым рядом журналов, интернет-порталов, участвуем в выставках и занимаемся активным продвижением бренда Neopol | Casa</p>
+          <p></i>
+            Краснодарский край, г.Армавир ул.Ленина 110</li>
+          <p>
+        </div>
+
+      </div>
+ 
+
+      <div class="row pt-5 mt-5 text-center">
+        <div class="col-md-12">
+          <div class=" pt-5">
+            <form action="{% url 'search' %}" method="GET">
+                {% csrf_token %}
+        
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" id="q" placeholder="Искать в названиях...">
+                  <div class="input-group-append" style="margin-left: 10px;">
+                    <button class="btn btn-outline-secondary" type="submit">Поиск</button>
+                  </div>
+                </div>
+        
+              </form>
+            <p class="copyright">
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://www.youtube.com/channel/UCCLye31f_uhGnJk3Vl1dYtg" target="_blank" > Neopol | Casa</a>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+

@@ -1,0 +1,84 @@
+{% extends 'my_app/base.html' %}
+{% load static %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+ 
+<!-- message-->
+                        {% if messages %}
+                          {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                              {{ message }}
+                            </div>
+                          {% endfor %}
+                        {% endif %}
+<!--message-->
+
+            <section class="shop-section section-padding">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg col-md-6 col-12">
+                            
+                            <div class="row">
+
+{% for p in products %}
+                                <div class="col-lg-6 col-12">
+                                    <div class="shop-thumb">
+                                        <div class="shop-image-wrap">
+                                            <img src="{{ p.image.url }}" class="shop-image img-fluid" style="width: 400px; height: 350px;" alt="">
+                                                <span class="mb-5">{{p.price}} ₽
+                                                    <span class="badge custom-badge"><a href="{{ p.get_absolute_url }}" class="shop-btn custom-btn btn d-flex align-items-center align-items-center">Открыть</a></span>
+                                                    <p>{{p.name}} </p>
+                                                  
+                        
+                                                </span>
+
+                                            
+                                        </div>
+
+                                    </div>
+                                </div>
+{% endfor %}
+                                       <!--  pagination  -->
+      <ul class="pagination">
+        {% if paginator.num_pages > 1 %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+            </li>
+            {% endif %}
+        
+            {% for p in paginator.page_range %}
+            {% if p == page_obj.number %}
+            <li class="page-item active">
+                <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+            </li>
+            {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+        
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">&gt;</a>
+            </li>
+            {% endif %}
+        </ul>
+        {% endif %}
+
+      </ul>
+                                  </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+{% endblock content %}
+

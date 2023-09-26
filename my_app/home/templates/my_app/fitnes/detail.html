@@ -1,0 +1,44 @@
+{% extends 'my_app/base.html' %}
+{% load static %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+
+
+<section class="shop-detail-bar section-bg">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-7 col-md-8 col-12 d-flex">
+                <p class="shop-detail-bar-wrap d-flex flex-wrap mb-0">
+                    <span class="me-2">Цена: {{products.price}} ₽</span>
+                </p>              
+            </div>
+        </div>
+    </div>
+</section>
+<section class="shop-detail-section section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6 col-12 m-auto">
+                 <div class="custom-block shop-detail-custom-block">
+                    <h3 class="mb-3">{{products.name}}</h3>
+                                       
+                        <p class="mb-2">{{ products.description}}</p>
+
+                 </div>
+                <a  class="custom-link mb-1" href="{% url 'add_to_cart' products.slug %}">Добавить в Избранное</a>
+            </div>
+
+             <div class="col-lg-6 col-12">
+
+                <div class="shop-image-wrap">
+                    <img src="{{products.thumbnail.url}}" class="shop-image img-fluid" alt="">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

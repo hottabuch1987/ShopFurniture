@@ -1,0 +1,84 @@
+{% extends 'my_app/base.html' %}
+{% load static %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+
+<div class="site-section">
+    <div class="container">
+
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-md-8 section-heading">
+          <span class="subheading">О компании</span>
+          <h2 class="heading mb-3">Наши преимущества</h2>
+          <p>Проект Neopol | Casa представлен в России с 2002 года. За годы плодотворной работы компания успела зарекомендовать себя на рынке, благодаря высокому качеству продукции, изысканному дизайну, отменному сервису, а также доступному уровню цен в своем сегменте. </p>
+        </div>
+      </div>
+
+      <!-- Slider -->
+      <div class="owl-carousel nonloop-block-14 block-14" data-aos="fade">
+
+        <div class="slide">
+          <div class="ftco-feature-1">
+            <span class="icon flaticon-fit"></span>
+            <div class="ftco-feature-1-text">
+              <h2>Ар деко</h2>
+                <p>Строгая закономерность, смелые геометрические линии, этнические узоры</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="ftco-feature-1">
+            <span class="icon flaticon-gym-1"></span>
+            <div class="ftco-feature-1-text">
+              <h2>Классика</h2>
+              <p>Сдержанность, лаконичность, утончённая изысканность  украшений</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="slide">
+          <div class="ftco-feature-1">
+            <span class="icon flaticon-vegetables"></span>
+            <div class="ftco-feature-1-text">
+              <h2>Колониальный</h2>
+              <p>Изысканный декор и экзотические аксессуары, утончённость</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="ftco-feature-1">
+            <span class="icon flaticon-fruit-juice"></span>
+            <div class="ftco-feature-1-text">
+              <h2>Неоклассика</h2>
+              <p>Сочетание роскоши с простотой и сдержанностью, минимум декора</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="ftco-feature-1">
+            <span class="icon flaticon-stationary-bike"></span>
+            <div class="ftco-feature-1-text">
+              <h2>Современный</h2>
+              <p>Функциональность, практичность, четкие линии,  открытые пространства</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="container">
+
+        <h2 class="">Наши специалисты готовы помочь Вам в любое время</h2>
+        <p class="lead mx-auto desc mb-5"> Мы стремимся постоянно улучшать качество предоставляемых услуг. Наш ассортимент регулярно пополняется новинками - мебелью и аксессуарами все новых и новых фабрик из различных стран, таких как Италия, Испания, Португалия, Нидерланды, Китай и др. При выборе фабрик, учитываются последние достижения мировой дизайнерской мысли, качество материалов, а также специфика российского потребителя, что позволяет обеспечить стабильный спрос на продукцию.</p>
+
+    </div>
+
+  </div>
+
+
+{% endblock content %}

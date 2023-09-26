@@ -1,0 +1,45 @@
+
+{% extends 'my_app/base.html' %}
+{% load static %}
+{% block title %}Поиск{% endblock %}
+
+
+
+{% block content %}
+<section class="shop-section section-padding">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg col-md-6 col-12">
+                
+
+                <div class="row">
+
+{% if object_list %}
+{% for p in object_list %}
+                    <div class="col-lg-6 col-12">
+                        <div class="shop-thumb">
+                            <div class="shop-image-wrap">
+                                <img src="{{ p.image.url }}" class="shop-image img-fluid" style="width: 400px; height: 350px;" alt="">
+                                    <span class="mb-5">
+                                        <span class="badge custom-badge"><a href="{{ p.get_absolute_url }}" class="shop-btn custom-btn btn d-flex align-items-center align-items-center">Открыть</a></span>
+                                        <p>{{p.name}} 
+                                        <span class="me-2">{{p.price}} ₽</span>
+                                       
+                                    </span>
+
+                                
+                            </div>
+
+                        </div>
+                    </div>
+{% endfor %}
+{% else %}
+<h5>NEOPOL | CASA 
+
+    <a href="tel: 8 952 87 92 098" class="mb-5"><strong>тел.</strong>8 (918) 395 90 38</a>
+  </h5>
+{% endif %}
+ 
+{% endblock %}
+

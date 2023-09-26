@@ -1,0 +1,84 @@
+{% load static %}
+{% load home_tags %}
+{% load cache %}
+
+
+<!--  -->
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close mt-3">
+        <span class="icon-close2 js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div>
+
+  <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+    <div class="container-fluid">
+      <div class="d-flex align-items-center">
+        <div class="site-logo"><a href="{% url 'index' %}"> NEOPOL CASA <span>.</span> </a></div>
+        <div class="ml-auto">
+          <nav class="site-navigation position-relative text-right" role="navigation">
+            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+              <li class="nav-item {% if active_nav == '/' %}active{% endif %}">
+                <a href="{% url 'index' %}" class="nav-link">Главная</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="{% url 'products' %}" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Категории</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  {% show_categories '-name' %}
+                </ul>
+              </li>
+              
+              <li class="nav-item {% if active_nav == '/contact/' %}active{% endif %}">
+                <a href="{% url 'contact' %}" class="nav-link">Контакты</a>
+              </li>
+              <li class="nav-item {% if active_nav == '/cart/' %}active{% endif %}">
+                <a class="nav-link " href="{% url 'cart' %}" >Избранное</a>
+            </li>
+      <!-- {% if request.user.is_authenticated %}
+                <li><a href="{% url 'index' %}" class="nav-link">Аккаунт</a></li>
+      {% else %}
+                <li><a href="{% url 'index' %}" class="nav-link">Войти</a></li>
+      {% endif %} -->
+            </ul>
+          </nav>
+          <a href="{% url 'index' %}" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <a id="bgndVideo" class="player"
+    data-property="{videoURL:'https://www.youtube.com/watch?v=-q0gdF7b1M8',showYTLogo:false, showAnnotations: false, showControls: false, cc_load_policy: false, containment:'#home-section',autoPlay:true, mute:true, startAt:255, stopAt: 271, opacity:1}">
+  </a>
+<div class="intro-section" id="home-section" style="background-color: #ccc;">
+    <div class="container">
+
+      <div class="row align-items-center">
+        <div class="col-lg-12 mx-auto text-center" data-aos="fade-up">
+          <h1 class="mb-3"> NEOPOL CASA </h1>
+          <p class="lead mx-auto desc mb-5">У нас вы можете заказать мебель в соответвествии с вашими предпочтениями</p>
+          <p class="text-center">
+            <a href="#" class="btn btn-outline-white py-3 px-5">Перейти в каталог</a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="schedule-wrap">
+
+    <div class="d-md-flex align-items-center">
+      <div class="hours mr-md-4 mb-4 mb-lg-0">
+        <strong class="d-block">Элитная мебель из Италии</strong>
+        Проектирование и дизайн от профессионального дизайнера.
+      </div>
+      <div class="cta ml-auto">
+        <a href="#contact-section" class="smoothscroll d-flex d-md-flex align-items-center btn">
+          <span class="mx-auto">  <span>Связаться</span> <span class="arrow icon-keyboard_arrow_right"></span></span>
+        </a>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,74 @@
+{% extends 'my_app/base.html' %}
+{% load static %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+<div class="site-section" xmlns="http://www.w3.org/1999/html">
+    <div class="container">Почему стоит выбрать Нас?
+
+        Мы осуществляем качественный постпродажный сервис, производим бесплатную доставку и сборку мебели в Москве, доставку мебели по всей России, а также предоставляем услуги примерки и хранения товара
+        Большая складская программа
+        
+        Постоянно в наличии на складе более 3000 видов товара: мебели, светильников, аксессуаров и пр.
+        Обширная партнерская сеть по всей России
+        
+        Более 90 партнеров в различных городах России
+
+      <h1 class="row justify-content-center">Оставить отзыв</h1>
+      
+      
+        <div class="row justify-content-center">
+        <div class="col-md-7">
+           
+           <form method="post" action="." data-aos="fade">
+            {% csrf_token %}
+
+            <div class="form-group row">
+              <div class="col-md-8 mb-2 mb-lg-2">
+                <input type="text" class="form-control" name="firstname_contact" id="firstname_contact" placeholder="Имя" required>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-8 mb-2 mb-lg-2">
+                <input type="email" id="email_contact" name="email_contact" class="form-control" placeholder="Email" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-8 mb-2 mb-lg-2">
+                <input type="tel"  class="form-control" id="phone_contact" name="phone_contact"
+                  placeholder="Телефон" required>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-12 mb-2 mb-lg-2">
+                <textarea class="form-control" id="text_contact" name="text_contact" cols="30" rows="10"
+                  placeholder="Задайте вопрос" required></textarea>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-12 mb-2 mb-lg-2">
+                {{form.captcha}}
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-6 mb-lg-6">
+
+                <!-- <button type="submit" class="btn btn-primary py-3 px-5 btn-block" value="Отправить"> -->
+                <button type="submit" id="btn__submit" class="btn btn-lg btn-primary">Отправить</button>
+              </div>
+            </div>
+              <p></p>
+
+          </form>
+        </div>
+      </div>
+
+      
+
+
+    </div>
+</div>
+{% endblock content %}
