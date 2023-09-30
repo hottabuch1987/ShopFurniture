@@ -1,0 +1,76 @@
+{% extends 'my_app/base.html' %}
+{% load static %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+ <div class="site-section bg-light contact-wrap" id="contact-section">
+      <div class="container">
+
+        <div class="row justify-content-center text-center">
+          <div class="col-md-8  section-heading">
+            <h2 class="heading mb-3">Регистрация</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-7">
+            <form method="post" action="." data-aos="fade">
+              {% csrf_token %}
+
+              <div class="form-group row">
+                <div class="col-md-6 mb-3 mb-lg-2">
+                  <input type="text" class="form-control" name="username" id="username" placeholder="Логин" required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-6 mb-3 mb-lg-2">
+                  <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-6 mb-3 mb-lg-2">
+                  <input type="password" class="form-control" name="password1" id="password1" placeholder="Пароль" required>
+                </div>
+              </div>
+                <div class="form-group row">
+                <div class="col-md-6 mb-3 mb-lg-2">
+                  <input type="password" class="form-control" name="password2" id="password2" placeholder="Пароль" required>
+                </div>
+              </div>
+              
+              <div class="form-group row">
+                <div class="col-md-12">
+                  {{form.captcha}}
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-6">
+
+                  <input type="submit" class="btn btn-primary py-3 px-5 btn-block" value="Отправить">
+                </div>
+              </div>
+              <!--проверка на существующего пользователя-->
+              {% if form.email.errors %}
+              <p>{{form.email.errors.0}}</p>
+              {% endif %}
+
+               {% if form.username.errors %}
+              <p>{{form.username.errors.0}}</p>
+              {% endif %}
+
+                 {% if form.non_field_errors %}
+                    <p>{{form.non_field_errors }}</p>
+                 {% endif %}
+        <!--        -->
+
+
+            </form>
+            <p></p>
+
+            <a class="section-small-title" href='{% url "login" %}'>Войти</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}

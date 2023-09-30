@@ -10,7 +10,31 @@
         <span class="icon-close2 js-menu-toggle"></span>
       </div>
     </div>
-    <div class="site-mobile-menu-body"></div>
+    <div class="site-mobile-menu-body">
+      <ul>
+        <li >
+          <a href="{% url 'index' %}" class="nav-link">Главная</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="{% url 'products' %}" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Категории</a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            {% show_categories '-name' %}
+          </ul>
+        </li>
+        
+        <li>
+          <a href="{% url 'contact' %}" class="nav-link">Контакты</a>
+        </li>
+        <li>
+          <a class="nav-link " href="{% url 'cart' %}" >Избранное</a>
+      </li>
+{% if request.user.is_authenticated %}
+          <li><a href="{% url 'profile' %}" class="nav-link">Аккаунт</a></li>
+{% else %}
+          <li><a href="{% url 'login' %}" class="nav-link">Войти</a></li>
+{% endif %}
+      </ul>
+    </div>
   </div>
 
   <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
@@ -19,7 +43,7 @@
         <div class="site-logo"><a href="{% url 'index' %}"> NEOPOL CASA <span>.</span> </a></div>
         <div class="ml-auto">
           <nav class="site-navigation position-relative text-right" role="navigation">
-            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+            <ul class="site-menu main-menu  mr-auto d-none d-lg-block">
               <li class="nav-item {% if active_nav == '/' %}active{% endif %}">
                 <a href="{% url 'index' %}" class="nav-link">Главная</a>
               </li>
@@ -36,11 +60,11 @@
               <li class="nav-item {% if active_nav == '/cart/' %}active{% endif %}">
                 <a class="nav-link " href="{% url 'cart' %}" >Избранное</a>
             </li>
-      <!-- {% if request.user.is_authenticated %}
-                <li><a href="{% url 'index' %}" class="nav-link">Аккаунт</a></li>
+      {% if request.user.is_authenticated %}
+                <li><a href="{% url 'profile' %}" class="nav-link">Аккаунт</a></li>
       {% else %}
-                <li><a href="{% url 'index' %}" class="nav-link">Войти</a></li>
-      {% endif %} -->
+                <li><a href="{% url 'login' %}" class="nav-link">Войти</a></li>
+      {% endif %}
             </ul>
           </nav>
           <a href="{% url 'index' %}" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a>
@@ -60,7 +84,7 @@
           <h1 class="mb-3"> NEOPOL CASA </h1>
           <p class="lead mx-auto desc mb-5">У нас вы можете заказать мебель в соответвествии с вашими предпочтениями</p>
           <p class="text-center">
-            <a href="#" class="btn btn-outline-white py-3 px-5">Перейти в каталог</a>
+            <a href="{% url 'products' %}" class="btn btn-outline-white py-3 px-5">Перейти в каталог</a>
           </p>
         </div>
       </div>
@@ -76,7 +100,7 @@
         Проектирование и дизайн от профессионального дизайнера.
       </div>
       <div class="cta ml-auto">
-        <a href="#contact-section" class="smoothscroll d-flex d-md-flex align-items-center btn">
+        <a href="{% url 'contact' %}" class="smoothscroll d-flex d-md-flex align-items-center btn">
           <span class="mx-auto">  <span>Связаться</span> <span class="arrow icon-keyboard_arrow_right"></span></span>
         </a>
       </div>

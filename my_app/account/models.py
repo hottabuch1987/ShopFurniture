@@ -23,6 +23,7 @@ class User(AbstractUser):
     avatar = models.ImageField("Фото", upload_to='avatars', blank=True, null=True)
     gender = models.CharField("Пол", choices=GENDER_TYPES, max_length=10)
     tel = models.CharField('Телефон', max_length=12)
+    auth_code = models.CharField(max_length=6, blank=True)
 
     def last_login_formatted(self):
         return timesince(self.last_login)

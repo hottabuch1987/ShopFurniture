@@ -1,3 +1,4 @@
+<!-- email/registration.html -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,10 +7,12 @@
 </head>
 <body>
     <h1>Добро пожаловать, {{ username }}!</h1>
-    <p>Вы успешно изменили данные о себе.</p>
+    <p>Вы успешно зарегистрировались на нашем сайте. Мы рады приветствовать вас в нашей системе.</p>
     <p>Ваши данные для входа:</p>
     <ul>
-        <li>Имя: {{ form }}</li>
+        <li>Имя: {{ username }}</li>
+        <li>Email: {{ email }}</li>
+        <li>Email: {{ auth_code }}</li>
 
 
     </ul>

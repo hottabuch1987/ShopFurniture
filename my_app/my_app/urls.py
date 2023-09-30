@@ -7,6 +7,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.sitemaps import GenericSitemap
 from home.sitemaps import StaticViewSitemap
 from home.models import Product
+from django.conf.urls import url
 
 sitemaps = {
     'blog': GenericSitemap({
@@ -19,6 +20,9 @@ sitemaps = {
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
+    url('social/', include('social_django.urls', namespace='social')),#githube 
+    path('social-auth/', include('social_django.urls')), #vk
+
     path('my/', include('account.urls')),
     path('sitemap.xml', sitemap,
          {'sitemaps': sitemaps},

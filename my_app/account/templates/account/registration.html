@@ -1,0 +1,28 @@
+{% extends 'my_app/base.html' %}
+{% load static %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+ <div class="site-section bg-light contact-wrap" id="contact-section">
+      <p class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-md-8  section-heading">
+            <h2 class="heading mb-3">Введите Код Активации</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-7">
+            <form method="post" action="." data-aos="fade">
+              {% csrf_token %}
+
+              <div class="form-group row">
+                <div class="col-md-6 mb-3 mb-lg-2">
+                  <input type="text" class="form-control" name="auth_code" id="username" placeholder="Код активации" required>
+                </div>
+              </div>
+            </form>
+
+
+        </div>
+      </div>
+    </div>
+{% endblock content %}

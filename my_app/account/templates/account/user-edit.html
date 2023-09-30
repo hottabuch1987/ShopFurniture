@@ -1,0 +1,62 @@
+{% extends 'my_app/base.html' %}
+{% load static %}
+{% block title %}{{user.username}}{% endblock %}
+{% block content %}
+ <div class="site-section bg-light contact-wrap" id="contact-section">
+   <div class="container">
+       <h2 class="heading mb-3">Редактировать профиль</h2>
+    <form method="post" action="." data-aos="fade" enctype="multipart/form-data">
+    {% csrf_token %}
+
+            <!--    логин-->
+            <div class="form-group row">
+                <div class="col-md-6 mb-3 mb-lg-2">
+                  <input type="text" class="form-control" name="username" id="username" placeholder="Логин" required>
+                </div>
+              </div>
+            <!--    email-->
+              <div class="form-group row">
+                <div class="col-md-6 mb-3 mb-lg-2">
+                  <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                </div>
+              </div>
+            <!--   имя-->
+              <div class="form-group row">
+                <div class="col-md-6 mb-3 mb-lg-2">
+                  <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Имя" >
+                </div>
+              </div>
+            <!--  фамилия-->
+              <div class="form-group row">
+                <div class="col-md-6 mb-3 mb-lg-2">
+                  <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Фамилия" >
+                </div>
+              </div>
+            <!--    Телефон -->
+              <div class="form-group row">
+                <div class="col-md-6 mb-3 mb-lg-2">
+                  <input type="tel"  class="form-control" id="tel" name="tel" placeholder="Телефон" required>
+                </div>
+              </div>
+
+            <!--  foto-->
+            <div class="form-group row">
+                <div class="col-md-6 mb-3 mb-lg-2">
+                    <input type="file" name="avatar" accept=".jpg,.png,.jpeg">
+                </div>
+              </div>
+            <!--отправить-->
+              <div class="form-group row">
+                <div class="col-md-3">
+                  <input type="submit" class="btn btn-primary py-2 px-3 btn-block" value="Сохранить">
+                </div>
+              </div>
+            {% if form.non_field_errors %}
+                <p>{{form.non_field_errors }}</p>
+            {% endif %}
+
+</form>
+       <br>
+   </div>
+ </div>
+{% endblock content %}

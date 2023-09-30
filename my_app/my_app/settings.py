@@ -1,6 +1,9 @@
 import os
 from pathlib import Path
+import environ
 
+env = environ.Env()
+environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -9,7 +12,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-wf(#xtx#3m(7jza8b0k6z8=4j))8u-yr8!@dk+^hhm=bfk8mz2'
+SECRET_KEY = env('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -27,9 +31,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    "social_django",
     "captcha",
+    "django_celery_beat",
+    'django_celery_results',
     
-
     "home.apps.HomeConfig",
     "account.apps.AccountConfig",
 ]
@@ -57,6 +63,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
                 'my_app.context_processors.active_nav',
             ],
         },
@@ -129,10 +137,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.User'
 
-AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2', #githube
+    'social_core.backends.vk.VKOAuth2', #vk
+    'django.contrib.auth.backends.ModelBackend')
 
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
-
+SOCIAL_AUTH_VK_APP_USER_MODE = 2
 
 #
 CACHES = {
@@ -147,15 +159,47 @@ SESSION_COOKIE_NAME = 'my_app_session_id'
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_AGE = 3600  # время в секундах 1 час
 
-#
-# EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-# SENDGRID_API_KEY = 'your_sendgrid_api_key'
-# DEFAULT_FROM_EMAIL = 'example@example.com' # Значение отправителя, которое будет использоваться во всех письмах
-# SERVER_EMAIL = 'example@example.com' # Значение, установленное в качестве серверного email. Если EMAIL_HOST_USER не сконфигурирован, использование также SERVER_EMAIL
-# EMAIL_HOST = 'smtp.sendgrid.net' # SMTP-адрес подключения SendGrid
-# EMAIL_PORT = 587 # Порт для SMTP-подключения
-# EMAIL_USE_TLS = True # Устанавливает безопасное соединение для сеанса SMTP.
-# EMAIL_HOST_USER = 'apikey' # Имя пользователя SendGrid
-# EMAIL_HOST_PASSWORD = 'your_sendgrid_api_key' # Ключ API SendGrid
+
 
 SITE_ID = 1
+
+DJANGO_SETTINGS_MODULE='my_app.settings'
+CELERY_BROKER_URL = 'redis://127.0.0.1:16379/0'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'default'
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:16379/1',
+
+    }
+}
+CELERY_BEAT_SHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+CELERY_TIMEZONE = "UTC"
+CELERY_TASK_TRACK_STARTED = True
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'  # SMTP Mail.ru
+EMAIL_PORT = 465
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/my/profile/'
+
+#githube
+SOCIAL_AUTH_JSONFIELD_ENABLED = True 
+SOCIAL_AUTH_GITHUB_KEY = env('SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = env('SOCIAL_AUTH_GITHUB_SECRET')
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+#vk
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
+SOCIAL_AUTH_VK_OAUTH2_KEY=env('SOCIAL_AUTH_VK_OAUTH2_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET=env('SOCIAL_AUTH_VK_OAUTH2_SECRET')
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']

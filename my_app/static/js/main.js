@@ -35,6 +35,7 @@ jQuery(document).ready(function($) {
           'class' : 'collapse',
           'id' : 'collapseItem' + counter,
         });
+		
 
         counter++;
 

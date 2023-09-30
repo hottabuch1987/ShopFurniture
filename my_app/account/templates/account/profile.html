@@ -1,0 +1,59 @@
+{% extends 'my_app/base.html' %}
+{% load static %}
+{% block title %}Профиль {{user.username}}{% endblock %}
+{% block content %}
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                {% if request.user.avatar %}
+                <img class="rounded-circle mt-5" width="250px" height="300" src="{{ user.avatar.url }}">
+                {% endif %}
+                <span class="font-weight-bold">{{user.username}}</span><span class="text-black-50">{{user.email}}</span><span> </span>
+            </div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Мой Профиль</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Имя</label><p>{{user.first_name}}</p></div>
+                    {% if request.user.first_name %}
+                    <div class="col-md-6"><label class="labels">Фамилия</label><p>{{ user.last_name }}</p></div>
+                    {% endif %}
+                </div>
+                <div class="row mt-3">
+                    {% if request.user.tel %}
+                    <div class="col-md-12"><label class="labels">Номер телефона</label><p>{{user.tel}}</p></div>
+                    {% endif %}
+
+                </div>
+                <div class="mt-5 text-center">
+                    <a  href='{% url "logout"  %}'>Выйти</a>
+                    <a  href='{% url "edit" pk=request.user.pk %}'>
+                    <button class="btn btn-primary profile-button" type="button">Изменить</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience">
+                    <span class="border px-3 p-1 add-experience">
+                        <a  href='{% url "delete" pk=request.user.pk %}'>&nbsp;Удалить</a>
+
+                    </span>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+{% endblock content %}

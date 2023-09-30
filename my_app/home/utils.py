@@ -14,11 +14,11 @@ class DataMixin:
 
     def get_user_context(self, **kwargs):
         context = kwargs
-        category = cache.get('category')
-        if not category:
-            category = Category.objects.annotate(Count('products'))
-            cache.set('category', category, 60)
+        # category = cache.get('category')
+        # if not category:
+            # category = Category.objects.annotate(Count('products'))
+            # cache.set('category', category, 60)
 
         context['menu'] = menu
-        context['category'] = category
+        # context['category'] = category
         return context
