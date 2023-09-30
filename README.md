@@ -13,6 +13,7 @@
 
 <img src="https://github.com/hottabuch1987/ShopFurniture/blob/main/2.2023.png" alt="Catalog">
 
-<img src="https://github.com/hottabuch1987/ShopFurniture/blob/main/3.2023.png" alt="Page">
+<img src="https://github.com/hottabuch1987/ShopFurniture/blob/main/3.2003.png" alt="Page">
 
 <img src="https://github.com/hottabuch1987/ShopFurniture/blob/main/4.2023.png" alt="Login">
+
