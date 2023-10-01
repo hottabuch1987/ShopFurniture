@@ -14,38 +14,50 @@ from django.contrib.auth.views import LoginView
 import random
 import string
 
-
-class RegisterUser(DataMixin, CreateView):
+from django.core.mail import send_mail
+class RegisterUser(FormView):
     form_class = RegisterUserForm
     template_name = 'account/register.html'
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title="Регистрация")
-        return dict(list(context.items()) + list(c_def.items()))
-
     def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
         username = form.cleaned_data.get('username')
         email = form.cleaned_data.get('email')
-
-        # send_registration_email.delay(username, email)
+        auth_code = ''.join(random.choices(string.digits, k=6))
+        user = form.save(commit=False)
+        user.auth_code = auth_code
+        user.save()
+        
+        send_mail(
+            'Активация профиля',
+            f'Ваш код активации: {auth_code}',
+            'varvar1987a@mail.ru',
+            [email],
+            fail_silently=False,
+        )
         return redirect('activate')
+
 
 
 class ActivateProfile(FormView):
     form_class = ActivateProfileForm
     template_name = 'account/registration.html'
 
-
+        
     def form_valid(self, form):
-        auth_code = ''.join(random.choices(string.digits, k=6))
+        auth_code = form.cleaned_data['auth_code']
+        
+        try:
+            user = User.objects.get(auth_code=auth_code)
+            user.auth_code == auth_code
 
-        send_registration_email.delay(auth_code)
-        return redirect('profile')
-    
-    
+        except User.DoesNotExist:
+            return redirect('register')
+
+        user.is_active = True
+        user.save()
+        return redirect('login')
+
+
     
     
 
@@ -73,8 +85,11 @@ class Profile(DataMixin, View):
     template_name = 'account/profile.html'
 
     def get(self, request):
-        user = User.objects.get(id=request.user.id)
-        return render(request, self.template_name, {'user': user})
+        if request.user.is_authenticated:
+            user = User.objects.get(id=request.user.id)
+            return render(request, self.template_name, {'user': user})
+        else:
+            return redirect('login')
 
 
 class EditProfile(UpdateView):
