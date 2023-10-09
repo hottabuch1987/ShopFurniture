@@ -20,6 +20,7 @@ sitemaps = {
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
+    path('rooms/', include('room.urls')),
     url('social/', include('social_django.urls', namespace='social')),#githube 
     path('social-auth/', include('social_django.urls')), #vk
 

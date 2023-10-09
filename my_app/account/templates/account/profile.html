@@ -10,12 +10,14 @@
                 <img class="rounded-circle mt-5" width="250px" height="300" src="{{ user.avatar.url }}">
                 {% endif %}
                 <span class="font-weight-bold">{{user.username}}</span><span class="text-black-50">{{user.email}}</span><span> </span>
+                
             </div>
         </div>
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Мой Профиль</h4>
+                    <a href="/rooms/">Чат</a>
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-6"><label class="labels">Имя</label><p>{{user.first_name}}</p></div>
@@ -31,6 +33,7 @@
                 </div>
                 <div class="mt-5 text-center">
                     <a  href='{% url "logout"  %}'>Выйти</a>
+
                     <a  href='{% url "edit" pk=request.user.pk %}'>
                     <button class="btn btn-primary profile-button" type="button">Изменить</button>
                     </a>

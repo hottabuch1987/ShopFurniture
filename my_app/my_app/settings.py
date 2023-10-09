@@ -18,7 +18,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*',]
 
 
 # Application definition
@@ -35,9 +35,11 @@ INSTALLED_APPS = [
     "captcha",
     "django_celery_beat",
     'django_celery_results',
-    
+    "channels",
+
     "home.apps.HomeConfig",
     "account.apps.AccountConfig",
+    "room.apps.RoomConfig",
 ]
 
 MIDDLEWARE = [
@@ -71,7 +73,15 @@ TEMPLATES = [
     },
 ]
 
+ASGI_APPLICATION = 'my_app.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
+
 WSGI_APPLICATION = 'my_app.wsgi.application'
+
 
 
 # Database
@@ -203,3 +213,5 @@ SOCIAL_AUTH_POSTGRES_JSONFIELD = True
 SOCIAL_AUTH_VK_OAUTH2_KEY=env('SOCIAL_AUTH_VK_OAUTH2_KEY')
 SOCIAL_AUTH_VK_OAUTH2_SECRET=env('SOCIAL_AUTH_VK_OAUTH2_SECRET')
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
+
+

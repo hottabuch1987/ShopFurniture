@@ -945,23 +945,23 @@ h1, h2, h3, h4, h5,
   padding-top: 12rem !important; }
 
 /* my style */
-  .dropdown-menu {
+  /* .dropdown-menu {
     display: none;
     position: absolute;
     
     
    
     min-width: 150px;
-  }
+  /* } */
   
-  .nav-item.dropdown:hover .dropdown-menu {
+  /* .nav-item.dropdown .dropdown-menu {
     display: block;
-  }
-  .shop-thumb:hover {
+  } */
+  /* .shop-thumb:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease-in-out;
   }
   .me-2 {
     color: #f23a2e;
-  }
+  } */ */
  

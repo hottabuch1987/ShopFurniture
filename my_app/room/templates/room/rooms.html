@@ -1,0 +1,26 @@
+{% extends 'my_app/base.html' %}
+{% load static %}
+{% block title %}Чаты{% endblock %}
+{% block content %}
+
+<section class="shop-section section-padding">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg col-md-6 col-12">
+                <h1>Чат Комнаты</h1>
+                <div class="row">
+                    
+                    {% for room in rooms %}
+                    <div class="col-lg-6 col-12">{{ room.name }}
+                        <a href="{% url 'room' room.slug %}">Присоедениться</a>
+                    </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
